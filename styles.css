@@ -1,0 +1,99 @@
+:root {
+    --primary-color: #0056b3;
+    --secondary-color: #e60000;
+    --background-color: #f0f8ff;
+    --card-background: #ffffff;
+    --text-color: #333333;
+}
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--background-color);
+}
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.logo {
+    max-width: 250px;
+    height: auto;
+}
+h1, h2 {
+    color: var(--primary-color);
+    text-align: center;
+}
+.calculator-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+.calculator-card {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.calculator-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+}
+.calculator-card h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+.calculator-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+.calculator {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+input[type="number"], input[type="date"], input[type="datetime-local"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: #004494;
+}
+.result {
+    margin-top: 15px;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+#backButton {
+    background-color: var(--secondary-color);
+    margin-bottom: 20px;
+}
+#backButton:hover {
+    background-color: #cc0000;
+}

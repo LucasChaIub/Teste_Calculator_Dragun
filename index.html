@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conexão VIP - Calculadoras Proporcionais</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <div class="header">
+        <img src="/a/9ebbd3d3-27e8-4bd9-a9c2-e6bd58ad8cf9" alt="Logo Conexão VIP" class="logo">
+        <h1>Calculadoras Proporcionais</h1>
+    </div>
+    
+    <div id="calculatorSelection" class="calculator-grid">
+        <div class="calculator-card" onclick="showCalculator('calc1')">
+            <div class="calculator-icon">📅</div>
+            <h3>Dias de Uso</h3>
+            <p>Calcule o valor proporcional com base nos dias de uso</p>
+        </div>
+        <div class="calculator-card" onclick="showCalculator('calc2')">
+            <div class="calculator-icon">🔄</div>
+            <h3>Mudança de Plano</h3>
+            <p>Calcule o valor na mudança entre planos</p>
+        </div>
+        <div class="calculator-card" onclick="showCalculator('calc3')">
+            <div class="calculator-icon">📆</div>
+            <h3>Mudança de Vencimento</h3>
+            <p>Calcule o valor ao mudar a data de vencimento</p>
+        </div>
+        <div class="calculator-card" onclick="showCalculator('calc4')">
+            <div class="calculator-icon">📄</div>
+            <h3>Multa Rescisória</h3>
+            <p>Calcule o valor da multa por cancelamento</p>
+        </div>
+        <div class="calculator-card" onclick="showCalculator('calc5')">
+            <div class="calculator-icon">⏱️</div>
+            <h3>Desconto por Dias Não Utilizados</h3>
+            <p>Calcule o desconto por período sem acesso</p>
+        </div>
+        <div class="calculator-card" onclick="showCalculator('calc6')">
+            <div class="calculator-icon">🔒</div>
+            <h3>Verificação de Refidelização</h3>
+            <p>Verifique se o cliente deve ser refidelizado</p>
+        </div>
+    </div>
+
+    <div id="calculatorContainer" style="display: none;">
+        <button id="backButton" onclick="showCalculatorSelection()">Voltar para Seleção</button>
+
+        <div id="calc1" class="calculator">
+            <h2>Cálculo Proporcional de Dias de Uso</h2>
+            <label for="valorBase1">Valor Base (R$):</label>
+            <input type="number" id="valorBase1" step="0.01" required>
+            <label for="ultimoVencimento1">Data do Último Vencimento Pago:</label>
+            <input type="date" id="ultimoVencimento1" required>
+            <label for="dataPagamento1">Data do Pagamento:</label>
+            <input type="date" id="dataPagamento1" required>
+            <button onclick="calcularDiasUso()">Calcular</button>
+            <div id="resultado1" class="result"></div>
+        </div>
+
+        <!-- Cálculo Proporcional de Mudança de Plano -->
+        <div id="calc2" class="calculator">
+            <h2>Cálculo Proporcional de Mudança de Plano</h2>
+            <label for="valorPlanoAntigo">Valor do Plano Antigo (R$):</label>
+            <input type="number" id="valorPlanoAntigo" step="0.01" required>
+            <label for="valorPlanoNovo">Valor do Plano Novo (R$):</label>
+            <input type="number" id="valorPlanoNovo" step="0.01" required>
+            <label for="ultimoVencimento2">Data do Último Vencimento Pago:</label>
+            <input type="date" id="ultimoVencimento2" required>
+            <label for="dataMudanca">Data da Mudança do Plano:</label>
+            <input type="date" id="dataMudanca" required>
+            <label for="proximoVencimento">Data do Próximo Vencimento:</label>
+            <input type="date" id="proximoVencimento" required>
+            <button onclick="calcularMudancaPlano()">Calcular</button>
+            <div id="resultado2" class="result"></div>
+        </div>
+
+        <!-- Cálculo Proporcional de Mudança de Vencimento -->
+        <div id="calc3" class="calculator">
+            <h2>Cálculo Proporcional de Mudança de Vencimento</h2>
+            <label for="valorPlano3">Valor do Plano (R$):</label>
+            <input type="number" id="valorPlano3" step="0.01" required>
+            <label for="ultimoVencimento3">Data do Último Vencimento Pago:</label>
+            <input type="date" id="ultimoVencimento3" required>
+            <label for="novoVencimento">Data do Novo Vencimento:</label>
+            <input type="date" id="novoVencimento" required>
+            <button onclick="calcularMudancaVencimento()">Calcular</button>
+            <div id="resultado3" class="result"></div>
+        </div>
+
+        <!-- Cálculo de Multa Rescisória -->
+        <div id="calc4" class="calculator">
+            <h2>Cálculo de Multa Rescisória</h2>
+            <label for="dataAssinatura">Data da Assinatura do Contrato:</label>
+            <input type="date" id="dataAssinatura" required>
+            <label for="dataCancelamento">Data do Cancelamento:</label>
+            <input type="date" id="dataCancelamento" required>
+            <button onclick="calcularMultaRescisoria()">Calcular</button>
+            <div id="resultado4" class="result"></div>
+        </div>
+
+        <!-- Cálculo de Desconto por Dias Não Utilizados -->
+        <div id="calc5" class="calculator">
+            <h2>Cálculo de Desconto por Dias Não Utilizados</h2>
+            <label for="valorMensal">Valor Mensal do Plano (R$):</label>
+            <input type="number" id="valorMensal" step="0.01" required>
+            <label for="dataHoraInicio">Data e Hora de Início do Período Sem Acesso:</label>
+            <input type="datetime-local" id="dataHoraInicio" required>
+            <label for="dataHoraFim">Data e Hora de Retorno do Acesso:</label>
+            <input type="datetime-local" id="dataHoraFim" required>
+            <button onclick="calcularDescontoDiasNaoUtilizados()">Calcular</button>
+            <div id="resultado5" class="result"></div>
+        </div>
+
+        <!-- Verificação de Refidelização -->
+        <div id="calc6" class="calculator">
+            <h2>Verificação de Refidelização</h2>
+            <label for="dataSuspensao">Data da Suspensão:</label>
+            <input type="date" id="dataSuspensao" required>
+            <label for="dataPagamentoReligamento">Data do Pagamento do Religamento:</label>
+            <input type="date" id="dataPagamentoReligamento" required>
+            <button onclick="verificarRefidelizacao()">Verificar</button>
+            <div id="resultado6" class="result"></div>
+        </div>
+    </div>
+</body>
+</html>
